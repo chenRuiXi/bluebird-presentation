@@ -38,10 +38,10 @@
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'https://cdn.bootcss.com/reveal.js/3.5.0/plugin/markdown/marked.js' },
+					{ src: 'https://cdn.bootcss.com/reveal.js/3.5.0/plugin/markdown/markdown.min.js' },
+					{ src: 'https://cdn.bootcss.com/reveal.js/3.5.0/plugin/notes/notes.min.js', async: true },
+					{ src: 'https://cdn.bootcss.com/reveal.js/3.5.0-beta/plugin/highlight/highlight.min.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
 		</script>
