@@ -45,7 +45,7 @@
 									//出错处理
 								}
 								//正常处理
-							})
+							});
 						</code></pre>
 						<ol>
 							<li>回调函数的第一个参数为错误对象</li>
@@ -53,7 +53,14 @@
 						</ol>
 					</section>
 				</section>
-				<section>Slide 2</section>
+				<section>
+					<h2>Async/Await</h2>
+					<pre><code class="hljs" data-trim>
+						const data = await fs.readFileAsync('xxx.txt');
+						//如果出错会向调用者抛出异常
+					</code></pre>
+					<p>但前提是得有<strong>返回Promise</strong>的readFileAsync()方法</p>
+				</section>
 			</div>
 		</div>
 
