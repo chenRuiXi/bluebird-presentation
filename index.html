@@ -19,7 +19,7 @@
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdn.bootcss.com/reveal.js/3.5.0/css/print/pdf.min.css' : 'https://cdn.bootcss.com/reveal.js/3.5.0/css/print/paper.min.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		</script>	
 	</head>
 	<body>
 		<div class="reveal">
@@ -29,12 +29,26 @@
 					<h1>用Bluebird更好的写Promise</h1>
 					<p>李志</p>
 				</section>
-				<section data-markdown>
-					<textarea data-template>
-						## 被黑出翔的回调函数
-						
-						![回调地狱](assets/callback-hell.png)
-					</textarea>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## 被黑出翔的回调函数
+
+							![回调地狱](assets/callback-hell.png)
+						</textarea>
+					</section>
+					<section>
+						<h1>Node.js的回调标准</h1>
+						<pre><code class="hljs" data-trim>
+							fs.readFile('xxx.txt', function(err, data){
+								if (err) {
+									//出错处理
+								}
+								//正常处理
+							})
+						</code></pre>
+						<p>回调函数的第一个参数为错误对象，应该在回调函数的第一句用if判断是否出错</p>
+					</section>
 				</section>
 				<section>Slide 2</section>
 			</div>
