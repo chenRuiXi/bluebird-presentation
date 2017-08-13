@@ -38,7 +38,7 @@
 						</textarea>
 					</section>
 					<section>
-						<h1>Node.js的回调标准</h1>
+						<h2>Node.js的回调标准</h2>
 						<pre><code class="hljs" data-trim>
 							fs.readFile('xxx.txt', function(err, data){
 								if (err) {
@@ -47,7 +47,10 @@
 								//正常处理
 							})
 						</code></pre>
-						<p>回调函数的第一个参数为错误对象，应该在回调函数的第一句用if判断是否出错</p>
+						<ol>
+							<li>回调函数的第一个参数为错误对象</li>
+							<li>应该在回调函数的第一句用if判断是否出错</li>
+						</ol>
 					</section>
 				</section>
 				<section>Slide 2</section>
