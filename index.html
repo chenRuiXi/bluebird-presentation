@@ -19,7 +19,12 @@
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdn.bootcss.com/reveal.js/3.5.0/css/print/pdf.min.css' : 'https://cdn.bootcss.com/reveal.js/3.5.0/css/print/paper.min.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>	
+		</script>
+		<style>
+			.text-center {
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
@@ -63,7 +68,7 @@
 					<br>
 					<p>怎么才能得到呢？</p>
 				</section>
-				<section>
+				<section class="text-center">
 					<pre><code class="hljs" data-trim>
 						fs.readFileAsync = filename => new Promise((resolve, reject) => {
 							fs.readFile(filename, function(err, data){
