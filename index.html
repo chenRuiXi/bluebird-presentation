@@ -74,12 +74,12 @@
 							});
 						});
 					</code></pre>
-					<p>但这在bluebird作者眼里，被称为Explicit Construction Anti-Pattern</p>
+					<p>但这在bluebird作者眼里，<br>被称为Explicit Construction Anti-Pattern</p>
 					<pre><code class="hljs" data-trim>
 						const Promise = require('blurbird');
 						fs.readFileAsync = Promise.promisify(fs.readFile);
 					</code></pre>
-					<p>通过bluebird，只要一句话就够了，并且readFile抛出异常也会被处理</p>
+					<p>通过bluebird，只要一句话就够了，<br>并且readFile抛出异常也会被处理</p>
 				</section>
 			</div>
 		</div>
