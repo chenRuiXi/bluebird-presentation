@@ -63,6 +63,24 @@
 					<br>
 					<p>怎么才能得到呢？</p>
 				</section>
+				<section>
+					<pre><code class="hljs" data-trim>
+						fs.readFileAsync = filename => new Promise((resolve, reject) => {
+							fs.readFile(filename, function(err, data){
+								if (err) {
+									reject(err);
+								}
+								resolve(data);
+							});
+						});
+					</code></pre>
+					<p>但这在bluebird作者眼里，被称为Explicit Construction Anti-Pattern。
+						因为通过bluebird，只要一句话就够了，并且readFile抛出异常也会被处理</p>
+					<pre><code class="hljs" data-trim>
+						const Promise = require('blurbird');
+						fs.readFileAsync = Promise.promisify(fs.readFile);
+					</code></pre>
+				</section>
 			</div>
 		</div>
 
