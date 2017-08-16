@@ -43,7 +43,7 @@
 						</textarea>
 					</section>
 					<section>
-						<h2>Node.js的回调标准</h2>
+						<h2>Node.js的回调约定</h2>
 						<pre><code class="hljs" data-trim>
 							fs.readFile('xxx.txt', function(err, data){
 								if (err) {
@@ -84,7 +84,7 @@
 						const Promise = require('blurbird');
 						fs.readFileAsync = Promise.promisify(fs.readFile);
 					</code></pre>
-					<p>因为通过bluebird，只要一句话就够了，并且readFile抛出异常也会被处理</p>
+					<p>因为通过bluebird，只要一句话就够了，并且readFile抛出异常也会被处理。并且如果readFile()方法调用了resolve(a, b)，那么readFileAsync就会返回一个数组</p>
 				</section>
 				<section class="text-left" data-markdown>
 					<textarea data-template>
@@ -98,9 +98,18 @@
 					</textarea>
 				</section>
 				<section>
-					<pre><code class="hljs" data-trim>
-						const fs = Promise.promisifyAll(require("fs"));
-					</code></pre>
+					<section>
+						<pre><code class="hljs" data-trim>
+							const fs = Promise.promisifyAll(require("fs"));
+						</code></pre>
+						<p>fs对象的每个方法都生成了对应的xxxAsync()方法，并且原方法不变。所有遵循Node.js回调约定的方法都可以被这样promise化</p>
+					</section>
+					<section>
+						<p>不遵循Node.js回调约定的则可以通过该方法的promisifier选项搞定：</p>
+						<pre><code class="hljs" data-trim>
+							const fs = Promise.promisifyAll(require("fs"));
+						</code></pre>
+					</section>
 				</section>
 			</div>
 		</div>
