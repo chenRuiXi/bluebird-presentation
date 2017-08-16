@@ -104,7 +104,8 @@
 						<pre><code class="hljs" data-trim>
 							const fs = Promise.promisifyAll(require("fs"));
 						</code></pre>
-						<p>fs对象的每个方法都生成了对应的xxxAsync()方法，并且原方法不变。所有遵循Node.js回调约定的方法都可以被这样promise化</p>
+						<p>fs对象的每个方法都生成了对应的xxxAsync()方法，并且原方法不变</p>
+						<p>所有遵循Node.js回调约定的方法都可以被这样promise化</p>
 					</section>
 					<section>
 						<p>不遵循Node.js回调约定的则可以通过该方法的promisifier选项搞定：</p>
