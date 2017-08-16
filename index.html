@@ -85,7 +85,18 @@
 						fs.readFileAsync = Promise.promisify(fs.readFile);
 					</code></pre>
 					<p>因为通过bluebird，只要一句话就够了，并且readFile抛出异常也会被处理</p>
-					<p>但这只是bluebird最弱的一个功能，下面我们看看bluebird的花式功能(full featured)</p>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						Promise.promisify()只是bluebird最弱的一个功能。先正式介绍下bluebird，官方网址为<https://github.com/petkaantonov/bluebird>，Star数15216。它对自己的定位是：Bluebird is a full featured promise library with unmatched performance.
+						
+						下面我们来看看所谓*"full featured"*
+					</textarea>
+				</section>
+				<section>
+					<pre><code class="hljs" data-trim>
+						const fs = Promise.promisifyAll(require("fs"));
+					</code></pre>
 				</section>
 			</div>
 		</div>
