@@ -89,11 +89,10 @@
 							const Promise = require('blurbird');
 							fs.readFileAsync = Promise.promisify(fs.readFile);
 						</code></pre>
-						<p>还有如下好处：</p>
-						<ol>
+						<ul>
 							<li>readFile抛出异常会被处理</li>
 							<li>如果readFile()方法调用了resolve(a, b)，那么readFileAsync就会返回一个数组</li>
-						</ol>
+						</ul>
 					</section>
 				</section>
 				<section data-markdown>
