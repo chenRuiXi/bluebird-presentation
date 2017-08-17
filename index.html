@@ -204,7 +204,7 @@
 							Promise.resolve().then(function() {
 							    throw new MyCustomError();
 							}).catch(MyCustomError, function(e) {
-							    //will end up here now
+							    // 自定义错误处理
 							});
 						</code></pre>
 					</section>
