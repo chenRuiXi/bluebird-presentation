@@ -84,11 +84,16 @@
 						<p>但在bluebird作者眼里，这被称为Explicit Construction Anti-Pattern</p>
 					</section>
 					<section>
+						<p>bluebird的方法，一句话就够了：</p>
 						<pre><code class="hljs" data-trim>
 							const Promise = require('blurbird');
 							fs.readFileAsync = Promise.promisify(fs.readFile);
 						</code></pre>
-						<p>因为通过bluebird，只要一句话就够了，并且readFile抛出异常也会被处理。并且如果readFile()方法调用了resolve(a, b)，那么readFileAsync就会返回一个数组</p>
+						<p>还有如下好处：</p>
+						<ol>
+							<li>readFile抛出异常会被处理</li>
+							<li>如果readFile()方法调用了resolve(a, b)，那么readFileAsync就会返回一个数组</li>
+						</ol>
 					</section>
 				</section>
 				<section class="text-left" data-markdown>
