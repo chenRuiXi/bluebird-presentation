@@ -137,6 +137,34 @@
 						</code></pre>
 					</section>
 				</section>
+				<section>
+					<div class="fragment">
+						<p>给任意Promise添加超时：</p>
+						<pre><code class="hljs" data-trim>
+							const Promise = require("bluebird");
+							const fs = Promise.promisifyAll(require('fs'));
+							fs.readFileAsync("huge-file.txt").timeout(100).then(function(fileContents) {
+							    // 100ms内成功读到文件内容
+							}).catch(Promise.TimeoutError, function(e) {
+							    console.log("could not read file within 100ms");
+							});
+						</code></pre>
+					</div>
+					<div class="fragment">
+						<p>类似sleep()的方法：</p>
+						<pre><code class="hljs" data-trim>
+							const Promise = require("bluebird");
+							async function xxx() {
+								// 等待5秒
+								await Promise.delay(5000);
+								// ...
+							}
+						</code></pre>
+					</div>
+				</section>
+				<section>
+					<p>JS不能catch指定类型的异常，bluebird是最轻量的给JS添加这个功能的方法。</p>
+				</section>
 			</div>
 		</div>
 
