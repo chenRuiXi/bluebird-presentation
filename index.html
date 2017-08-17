@@ -35,12 +35,9 @@
 					<p>李志</p>
 				</section>
 				<section>
-					<section data-markdown>
-						<textarea data-template>
-							被黑出翔的回调函数
-
-							![回调地狱](http://7xowq0.com1.z0.glb.clouddn.com/callback-hell.png)
-						</textarea>
+					<section>
+						<p>被黑出翔的回调函数</p>
+						<img class="fragment" src="http://7xowq0.com1.z0.glb.clouddn.com/callback-hell.png">
 					</section>
 					<section>
 						<p>Node.js的回调约定</p>
@@ -52,7 +49,7 @@
 								//正常处理
 							});
 						</code></pre>
-						<ol>
+						<ol class="fragment">
 							<li>回调函数的第一个参数为错误对象</li>
 							<li>应该在回调函数的第一句用if判断是否出错</li>
 						</ol>
@@ -64,9 +61,11 @@
 						const data = await fs.readFileAsync('xxx.txt');
 						//如果出错会向调用者抛出异常
 					</code></pre>
-					<p>但前提是得有<mark>返回Promise</mark>的readFileAsync()方法</p>
-					<br>
-					<p>怎么才能得到呢？</p>
+					<div class="fragment">
+						<p>但前提是得有<mark>返回Promise</mark>的readFileAsync()方法</p>
+						<br>
+						<p>怎么才能得到呢？</p>
+					</div>
 				</section>
 				<section>
 					<section>
@@ -81,7 +80,7 @@
 								});
 							});
 						</code></pre>
-						<p>但在bluebird作者眼里，这被称为Explicit Construction Anti-Pattern</p>
+						<p class="fragment">但在bluebird作者眼里，这被称为Explicit Construction Anti-Pattern</p>
 					</section>
 					<section>
 						<p>bluebird的方法，一句话就够了</p>
@@ -89,7 +88,7 @@
 							const Promise = require('blurbird');
 							fs.readFileAsync = Promise.promisify(fs.readFile);
 						</code></pre>
-						<ul>
+						<ul class="fragment">
 							<li>readFile抛出异常会被处理</li>
 							<li>如果readFile()方法调用了resolve(a, b)，那么readFileAsync就会返回一个数组</li>
 						</ul>
@@ -108,8 +107,8 @@
 						<pre><code class="hljs" data-trim>
 							const fs = Promise.promisifyAll(require("fs"));
 						</code></pre>
-						<p><a href="http://nodejs.cn/api/fs.html">fs</a>对象的每个方法都生成了对应的xxxAsync()方法，并且原方法不变</p>
-						<p>所有遵循Node.js回调约定的方法都可以被这样promise化</p>
+						<p class="fragment"><a href="http://nodejs.cn/api/fs.html">fs</a>对象的每个方法都生成了对应的xxxAsync()方法，并且原方法不变</p>
+						<p class="fragment">所有遵循Node.js回调约定的方法都可以被这样promise化</p>
 					</section>
 					<section>
 						<p>不遵循Node.js回调约定的则可以通过该方法的promisifier选项搞定。比如微信小程序API</p>
