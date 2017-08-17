@@ -69,33 +69,37 @@
 					<p>怎么才能得到呢？</p>
 				</section>
 				<section class="text-left">
-					<pre><code class="hljs" data-trim>
-						fs.readFileAsync = filename => new Promise((resolve, reject) => {
-							fs.readFile(filename, function(err, data){
-								if (err) {
-									reject(err);
-								}
-								resolve(data);
+					<section>
+						<pre><code class="hljs" data-trim>
+							fs.readFileAsync = filename => new Promise((resolve, reject) => {
+								fs.readFile(filename, function(err, data){
+									if (err) {
+										reject(err);
+									}
+									resolve(data);
+								});
 							});
-						});
-					</code></pre>
-					<p>但在bluebird作者眼里，这被称为Explicit Construction Anti-Pattern</p>
-					<pre><code class="hljs" data-trim>
-						const Promise = require('blurbird');
-						fs.readFileAsync = Promise.promisify(fs.readFile);
-					</code></pre>
-					<p>因为通过bluebird，只要一句话就够了，并且readFile抛出异常也会被处理。并且如果readFile()方法调用了resolve(a, b)，那么readFileAsync就会返回一个数组</p>
+						</code></pre>
+						<p>但在bluebird作者眼里，这被称为Explicit Construction Anti-Pattern</p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim>
+							const Promise = require('blurbird');
+							fs.readFileAsync = Promise.promisify(fs.readFile);
+						</code></pre>
+						<p>因为通过bluebird，只要一句话就够了，并且readFile抛出异常也会被处理。并且如果readFile()方法调用了resolve(a, b)，那么readFileAsync就会返回一个数组</p>
+					</section>
 				</section>
 				<section class="text-left" data-markdown>
 					<textarea data-template>
-						Promise.promisify()只是bluebird最弱的一个功能
-						
-						[bluebird](https://github.com/petkaantonov/bluebird)的Star数为15216。它对自己的定位是：Bluebird is a full featured promise library with unmatched performance.
-						
-						bluebird.min.js大小为77.6KB
-						
+						Promise.promisify()只是bluebird最弱的一个功能。[Bluebird](https://github.com/petkaantonov/bluebird)的Star数为15216。它对自己的定位是：Bluebird is a full featured promise library with unmatched performance.
+
 						<br>
-						
+
+						bluebird.min.js大小为77.6KB
+
+						<br>
+
 						下面我们来看看所谓*"full featured"*
 					</textarea>
 				</section>
@@ -118,6 +122,8 @@
 								}
 							});
 						</code></pre>
+					</section>
+					<section>
 						<p>用bluebird将其promise化：</p>
 						<pre><code class="hljs" data-trim>
 							function WXPromisifier(originalMethod) {
@@ -212,7 +218,7 @@
 					</section>
 				</section>
 				<section>
-					<p>存放共享状态：</p>
+					<p>bind()方法用于指定存放共享状态的对象：</p>
 					<pre><code class="hljs" data-trim>
 						somethingAsync().bind({})
 						.then(function (aValue) {
@@ -225,10 +231,10 @@
 					</code></pre>
 				</section>
 				<section>
-					<h2>Any Questions?</h2>
+					<p>Any Questions?</p>
 				</section>
 				<section>
-					<h2>Thanks</h2>
+					<h2>Thanks!</h2>
 				</section>
 			</div>
 		</div>
