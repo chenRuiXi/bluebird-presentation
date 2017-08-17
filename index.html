@@ -142,11 +142,12 @@
 					<pre><code class="hljs" data-trim>
 						const Promise = require("bluebird");
 						const fs = Promise.promisifyAll(require('fs'));
-						fs.readFileAsync("huge-file.txt").timeout(100).then(function(fileContents) {
+						fs.readFileAsync("huge-file.txt").timeout(100)
+						  .then(function(fileContents) {
 						    // 100ms内成功读到文件内容
-						}).catch(Promise.TimeoutError, function(e) {
+						  }).catch(Promise.TimeoutError, function(e) {
 						    console.log("could not read file within 100ms");
-						});
+						  });
 					</code></pre>
 					<div class="fragment">
 						<p>类似sleep()的方法：</p>
@@ -161,7 +162,73 @@
 					</div>
 				</section>
 				<section>
-					<p>JS不能catch指定类型的异常，bluebird是最轻量的给JS添加这个功能的方法。</p>
+					<section>
+						<p>JS不能catch指定类型的异常，bluebird是最轻量的给JS添加这个功能的方法：</p>
+						<pre><code class="hljs" data-trim>
+							somePromise.then(function() {
+							    return a.b.c.d();
+							}).catch(TypeError, ReferenceError, function(e) {
+							    // 语法错误
+							}).catch(NetworkError, TimeoutError, function(e) {
+							    // 网络错误
+							}).catch(function(e) {
+							    // 任何其他错误
+							});
+						</code></pre>
+					</section>
+					<section>
+						<p>可以很方便的自定义错误类型：</p>
+						<pre><code class="hljs" data-trim>
+							function MyCustomError(message) {
+							    this.message = message;
+							    this.name = "MyCustomError";
+							    Error.captureStackTrace(this, MyCustomError);
+							}
+							MyCustomError.prototype = Object.create(Error.prototype);
+							MyCustomError.prototype.constructor = MyCustomError;
+						</code></pre>
+						<p>使用自定义错误类型：</p>
+						<pre><code class="hljs" data-trim>
+							Promise.resolve().then(function() {
+							    throw new MyCustomError();
+							}).catch(MyCustomError, function(e) {
+							    //will end up here now
+							});
+						</code></pre>
+					</section>
+					<section>
+						<p>predicate-based filters:</p>
+						<pre><code class="hljs" data-trim>
+							function ClientError(e) {
+							    return e.code >= 400 && e.code < 500;
+							}
+
+							request("http://www.google.com").then(function(contents) {
+							    // ...
+							}).catch(ClientError, function(e) {
+							   // 客户端请求错误
+							});
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<p>存放共享状态：</p>
+					<pre><code class="hljs" data-trim>
+						somethingAsync().bind({})
+						.then(function (aValue) {
+						    this.aValue = aValue;
+						    return somethingElseAsync(aValue);
+						})
+						.then(function (bValue) {
+						    return this.aValue + bValue;
+						});
+					</code></pre>
+				</section>
+				<section>
+					<h2>Any Questions?</h2>
+				</section>
+				<section>
+					<h2>Thanks</h2>
 				</section>
 			</div>
 		</div>
