@@ -108,9 +108,32 @@
 						<p>所有遵循Node.js回调约定的方法都可以被这样promise化</p>
 					</section>
 					<section>
-						<p>不遵循Node.js回调约定的则可以通过该方法的promisifier选项搞定：</p>
+						<p>不遵循Node.js回调约定的则可以通过该方法的promisifier选项搞定。比如微信小程序API：</p>
 						<pre><code class="hljs" data-trim>
-							const fs = Promise.promisifyAll(require("fs"));
+							wx.request({
+								...,
+								success: function(res) {
+								},
+								fail: function(err) {
+								}
+							});
+						</code></pre>
+						<p>用bluebird将其promise化：</p>
+						<pre><code class="hljs" data-trim>
+							function WXPromisifier(originalMethod) {
+							    // 返回一个返回Promise的函数
+							    return function promisified() {
+								const args = [].slice.call(arguments);
+								const self = this;
+								return new Promise(function(resolve, reject) {
+								    args[0].success = resolve;
+								    args[0].fail = reject;
+								    originalMethod.apply(self, args);
+								});
+							    };
+							}
+
+							Promise.promisifyAll(wx, {promisifier: WXPromisifier});
 						</code></pre>
 					</section>
 				</section>
