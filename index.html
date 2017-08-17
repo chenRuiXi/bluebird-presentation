@@ -70,7 +70,7 @@
 				</section>
 				<section>
 					<section>
-						<p>Promise教程中的方法：</p>
+						<p>Promise教程中的方法</p>
 						<pre><code class="hljs" data-trim>
 							fs.readFileAsync = filename => new Promise((resolve, reject) => {
 								fs.readFile(filename, function(err, data){
@@ -84,7 +84,7 @@
 						<p>但在bluebird作者眼里，这被称为Explicit Construction Anti-Pattern</p>
 					</section>
 					<section>
-						<p>bluebird的方法，一句话就够了：</p>
+						<p>bluebird的方法，一句话就够了</p>
 						<pre><code class="hljs" data-trim>
 							const Promise = require('blurbird');
 							fs.readFileAsync = Promise.promisify(fs.readFile);
@@ -95,22 +95,16 @@
 						</ul>
 					</section>
 				</section>
-				<section data-markdown>
-					<textarea data-template>
-						Promise.promisify()只是bluebird最弱的一个功能。它对自己的定位是：Bluebird is a full featured promise library with unmatched performance.
-
-						<br>
-
-						[Bluebird](https://github.com/petkaantonov/bluebird)的Star数为15216。bluebird.min.js大小为77.6KB
-
-						<br>
-
-						下面我们来看看所谓*"full featured"*
-					</textarea>
+				<section>
+					<p>Promise.promisify()只是bluebird最弱的一个功能。它对自己的定位是：Bluebird is a full featured promise library with unmatched performance.</p>
+					<br>
+					<p class="fragment"><a href="https://github.com/petkaantonov/bluebird">Bluebird</a>的Star数为15216。bluebird.min.js大小为77.6KB</p>
+					<br>
+					<p class="fragment">下面我们来看看所谓<em>full featured</em></p>
 				</section>
 				<section>
 					<section>
-						<p>Promise.promisifyAll()方法：</p>
+						<p>Promise.promisifyAll()方法</p>
 						<pre><code class="hljs" data-trim>
 							const fs = Promise.promisifyAll(require("fs"));
 						</code></pre>
@@ -118,7 +112,7 @@
 						<p>所有遵循Node.js回调约定的方法都可以被这样promise化</p>
 					</section>
 					<section>
-						<p>不遵循Node.js回调约定的则可以通过该方法的promisifier选项搞定。比如微信小程序API：</p>
+						<p>不遵循Node.js回调约定的则可以通过该方法的promisifier选项搞定。比如微信小程序API</p>
 						<pre><code class="hljs" data-trim>
 							wx.request({
 								...,
@@ -130,7 +124,7 @@
 						</code></pre>
 					</section>
 					<section>
-						<p>用bluebird将其promise化：</p>
+						<p>用bluebird将其promise化</p>
 						<pre><code class="hljs" data-trim>
 							function WXPromisifier(originalMethod) {
 							    // 返回一个返回Promise的函数
@@ -150,7 +144,7 @@
 					</section>
 				</section>
 				<section>
-					<p>给任意Promise添加超时：</p>
+					<p>给任意Promise添加超时</p>
 					<pre><code class="hljs" data-trim>
 						const Promise = require("bluebird");
 						const fs = Promise.promisifyAll(require('fs'));
@@ -162,7 +156,7 @@
 						  });
 					</code></pre>
 					<div class="fragment">
-						<p>类似sleep()的方法：</p>
+						<p>类似sleep()的方法</p>
 						<pre><code class="hljs" data-trim>
 							const Promise = require("bluebird");
 							async function xxx() {
@@ -176,7 +170,7 @@
 				<section>
 					<section>
 						<p>JS不能catch指定类型的异常，bluebird是最轻量的给JS添加这个功能的方法，bluebird称其为Filtered Catch：</p>
-						<pre><code class="hljs" data-trim>
+						<pre class="fragment"><code class="hljs" data-trim>
 							somePromise.then(function() {
 							    return a.b.c.d();
 							}).catch(TypeError, ReferenceError, function(e) {
@@ -189,7 +183,7 @@
 						</code></pre>
 					</section>
 					<section>
-						<p>可以很方便的自定义错误类型：</p>
+						<p>可以很方便的自定义错误类型</p>
 						<pre><code class="hljs" data-trim>
 							function MyCustomError(message) {
 							    this.message = message;
@@ -199,14 +193,16 @@
 							MyCustomError.prototype = Object.create(Error.prototype);
 							MyCustomError.prototype.constructor = MyCustomError;
 						</code></pre>
-						<p>使用自定义错误类型：</p>
-						<pre><code class="hljs" data-trim>
-							Promise.resolve().then(function() {
-							    throw new MyCustomError();
-							}).catch(MyCustomError, function(e) {
-							    // 自定义错误处理
-							});
-						</code></pre>
+						<div class="fragment">
+							<p>使用自定义错误类型</p>
+							<pre><code class="hljs" data-trim>
+								Promise.resolve().then(function() {
+								    throw new MyCustomError();
+								}).catch(MyCustomError, function(e) {
+								    // 自定义错误处理
+								});
+							</code></pre>
+						</div>
 					</section>
 					<section>
 						<p>predicate-based filters:</p>
@@ -224,7 +220,7 @@
 					</section>
 				</section>
 				<section>
-					<p>bind()方法用于指定存放共享状态的对象：</p>
+					<p>bind()方法用于指定存放共享状态的对象，在后续的Promise链中通过this访问</p>
 					<pre><code class="hljs" data-trim>
 						somethingAsync().bind({})
 						.then(function (aValue) {
@@ -235,6 +231,7 @@
 						    return this.aValue + bValue;
 						});
 					</code></pre>
+					<p>注意不要用箭头函数</p>
 				</section>
 				<section>
 					<p>bluebird还有collection操作：map、reduce、filter、each，用于资源管理的disposer、Promise.using，取消Promise，tap，reflect，inspection等功能，以后我们有机会再继续介绍</p>
