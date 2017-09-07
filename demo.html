@@ -41,6 +41,33 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
+					<h1>关于移动端rem布局</h1>
+					<h3>指相对于根元素（即html元素）的字体大小的单位。</h3>
+					<p>
+            是CSS3新增的一个相对单位，使用rem为元素设定字体大小时，相对大小对比的是HTML根元素。
+            这个单位可谓集相对大小和绝对大小的优点于一身，通过它既可以做到只修改根元素就成比例地调整所有字体大小，
+            又可以避免字体大小逐层复合的连锁反应。
+          </p>
+				</section>
+
+        <section>
+          <h3>支持。</h3>
+					<p>
+            目前，除了<h3 style="color: red;">IE8</h3>及更早版本外，所有浏览器均已支持rem。对于不支持它的浏览器，
+            应对方法也很简单，就是多写一个绝对单位的声明。这些浏览器会忽略用rem设定的字体大小。
+					</p>
+				</section>
+
+        <section>
+          <h3>使用方式</h3>
+          <p>利用css3 尺寸单位 VW</p>
+          <p>1VW = 1%的屏幕宽度</p>
+          <p>相对于iPhone6的设计稿 375px的逻辑像素</p>
+          <p>计算方式： 1px/font-size VW = 375px/100VW</p>
+          <p>设置html font-size: 0.2667VW</p>
+          <p>40px 的宽度就可以设置成 40rem 了</p>
+				</section>
+				<section>
 					<h1>Reveal.js</h1>
 					<h3>The HTML Presentation Framework</h3>
 					<p>
