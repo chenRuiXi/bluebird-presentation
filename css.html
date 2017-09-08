@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>9-8分享</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>css3选择器</h2>
+					<p>少写很多class</p>
+				</section>
+				<section>
+					<h2>c3选择器的分类</h2>
+					<ol>
+						<li>基本选择器</li>
+						<li>层次选择器</li>
+						<li>伪类选择器</li>
+						<li>伪元素</li>
+						<li>属性选择器</li>
+					</ol>
+				</section>
+				
+				<section>
+					<h3>基本选择器</h3>
+					<p>通配符 *{}</p>
+					<p>元素(标签)选择器 div{}等等</p>
+					<p>id选择器  #id{}</p>
+					<p>类选择器  .class{}</p>
+					<p>组合选择器 div, .class, #id{}</p>
+				</section>
+				
+				<section>
+					<h3>层次选择器</h3>
+					<p>后代选择器 div p{}</p>
+					<p>子选择器 div>p{}</p>
+					<p>相邻兄弟选择器(选择后一个div) .class+div{}</p>
+					<p>通用兄弟选择器(选择后面所有div) .class~div{}</p>
+				</section>
+
+				<section>
+					<h3>伪元素选择器</h3>
+					<p>Element:link{} 选择定义了超链接但链接还未被访问过的元素</p>
+					<p>Element:visited{} 选择定义了超链接并且链接已经被访问过的元素</p>
+					<p>Element:active{} 选择匹配的Element元素，且元素被激活，常用在锚点和按钮上</p>
+					<p>Element:hover{} 选择鼠标停留的匹配的Element元素</p>
+					<p>Element:focus{} 选择匹配的Element元素，且元素获得焦点</p>
+				</section>
+
+				<section>
+					<p>目标伪类选择器 Element:target 配合a标签的锚点链接使用</p>
+					<p>语言伪类选择器 Element:lang(language)  配合&lt;html lang="language"&gt;&lt;/html&gt;</p>
+					<p>状态伪类选择器 Element:checked,Element:enabled,Element:disabled  配合input标签使用</p>
+				</section>
+
+				<section>
+					<h3>结构伪劣选择器</h3>
+					<p>Element:first-child,Element:last-child,Element:root,Element:nth-child(n),Element:nth-last-child(n),Element:nth-of-type(n),Element:nth-last-of-type(n),Element:first-of-type,Element:last-of-type,Element:only-child,Element:only-of-type,Element:empty</p>
+				</section>
+
+				<section>
+					<p>Element:first-child  选择第一个子元素</p>
+					<p>Element:last-child  选择最后一个子元素</p>
+					<p>Element:nth-child(n)  选择第n个子元素  从1开始</p>
+					<p>其中的n可以是数值(从1开始)，也可以是包含n的表达式，也可以是odd(奇数)，even(偶数)</p>
+					<p>Element:nth-last-child(n)  选择倒序第n个子元素</p>
+				</section>
+
+				<section>
+					<p>Element:nth-of-type(n) 选择Element父元素中第n个Element元素</p>
+					<p>Element:nth-last-of-type(n)  同上  倒序方式</p>
+					<p>Element:first-of-type   选择Element父元素中第1个Element元素</p>
+					<p>Element:last-of-type   选择Element父元素中最后一个Element元素</p>
+				</section>
+
+				<section>
+					<p>Element:only-child  选择Element父元素中只有唯一一个Element的元素</p>
+					<p>Element:only-of-type  选择Element父元素中只有一个Element的元素，Element父元素可以有其他元素</p>
+					<p>Element:empty  选择没有内容的元素（包括空格）</p>
+					<p>Element:root  选择html</p>
+				</section>
+
+				<section>
+					<h3>伪类选择器</h3>
+					<p>在css3中，为了区分伪元素于伪类选择器，采用了::的写法，但:的写法在目前主流浏览器中也支持</p>
+					<p>注意： IE6-8只支持:的写法 </p>
+				</section>
+				
+				<section>
+					<p>::first-letter   选择文本块的第一个字</p>
+					<p>::first-line   选择文本块的第一行文字</p>
+					<p>::before  在标签的最前面插入内容</p>
+					<p>::after  在标签的最后面插入内容 (清浮动常用)</p>
+				</section>
+
+				<section>
+					<p>万能清除浮动</p>
+					<pre><code class="hljs">
+					.clearfix:after {
+						content: ".";
+						display: block;
+						height: 0;
+						clear: both;
+						visibility: hidden;
+					}
+					</code></pre>
+				</section>
+				
+
+				<section>
+					<h3>属性选择器选择器</h3>
+				</section>
+
+				<section>
+					<p>Element[attr]  选择Element中包含attr属性的元素</p>
+					<p>Element[attr=val]  选择Element中包含attr属性并且值为val的元素</p>
+					<p>Element[attr|=val]  选择Element中包含attr属性并且值为val或以val-开头的元素</p>
+					<p>Element[attr~=val]  选择Element中包含attr多个属性中包括val的元素</p>
+				</section>
+				
+				<section>
+					<p>Element[attr*=val]  选择Element中包含attr属性中包含val的元素</p>
+					<p>Element[attr^=val]  选择Element中包含attr属性并且值以val开头的元素</p>
+					<p>Element[attr$=val]  选择Element中包含attr属性并且值以val结尾的元素</p>
+				</section>
+
+
+				<section>
+					<h2>最后，关于移动端布局中的rem布局</h2>
+				</section>
+				<section>
+					<h2>rem布局</h2>
+					<h3>指相对于根元素（即html元素）的字体大小的单位进行布局。</h3>
+					<p>
+						是CSS3新增的一个相对单位，使用rem为元素设定字体大小时，相对大小对比的是HTML根元素。
+						用处：针对一种手机屏幕布局做到适应常见的手机屏幕。
+					</p>
+				</section>
+
+				<section>
+					<h3>支持。</h3>
+					<p>
+						目前，除了<h3 style="color: red;">IE8</h3>及更早版本外，所有浏览器均已支持rem。对于不支持它的浏览器，
+						应对方法也很简单，就是多写一个绝对单位的声明。这些浏览器会忽略用rem设定的字体大小。
+					</p>
+				</section>
+
+				<section>
+					<h3>使用方式</h3>
+					<p>利用css3 尺寸单位 VW</p>
+					<p>1VW = 1%的屏幕宽度</p>
+					<p>相对于iPhone6的设计稿 375px的逻辑像素</p>
+					<p>计算方式（以1rem=100px计算）： 100px/font-size VW = 375px/100VW</p>
+					<p>设置html font-size: 0.2667VW</p>
+					<p>40px 的宽度就可以设置成 0.4rem 了</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
